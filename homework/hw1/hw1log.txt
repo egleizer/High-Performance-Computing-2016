@@ -1,0 +1,112 @@
+commit 6f73bd9d35041401ef8ee3e8275b45712717ee4b
+Author: Evgeniia Gleizer <evgeniiagleizer@dyn1219-193.wlan.ic.ac.uk>
+Date:   Wed Oct 26 10:10:48 2016 +0100
+
+    commit by pkr
+
+commit 0f5347768a9ffec4987451585a2e39e1439ca2ec
+Merge: 5d100d9 6402e38
+Author: Evgeniia Gleizer <elgle@yandex.ru>
+Date:   Tue Oct 25 18:59:08 2016 +0100
+
+    Merged ImperialHPSC/m3c2016 into master
+
+commit 6402e384e4e6999d5f165891dc0e4e85abbec482
+Author: prasun <prasun@ma-pray1.ma.ic.ac.uk>
+Date:   Tue Oct 25 15:55:33 2016 +0100
+
+    adding lab3
+
+commit 2e1de05d38ec0c69ff52c9f7bd042764af839bb7
+Merge: 0e3124e 8a2d07a
+Author: prasun <prasun@ma-pray1.ma.ic.ac.uk>
+Date:   Tue Oct 25 15:46:11 2016 +0100
+
+    Merge branch 'master' of https://bitbucket.org/ImperialHPSC/m3c2016
+    merging onto mac desktop
+
+commit 5d100d9cfdb9445da19b6d74ae3bc619da42320f
+Author: Evgeniia Gleizer <evgeniiagleizer@evgeniismacbook.home>
+Date:   Mon Oct 24 23:56:20 2016 +0100
+
+    test
+
+commit 8a2d07a7f2fd5ef508335f3a7e8188bb4f7c3f1b
+Author: Prasun Ray <p.ray@imperial.ac.uk>
+Date:   Mon Oct 24 13:44:54 2016 +0100
+
+    adding mysqrt.py
+
+commit ec097e24be4dd4d7dde51f7117f8041f18f4d6ec
+Author: Prasun Ray <p.ray@imperial.ac.uk>
+Date:   Mon Oct 24 01:00:51 2016 +0100
+
+    adding lecture 5
+
+commit 0e3124ec2d634cfe1ce18d56696475b8453170c0
+Merge: 76c6f42 c1b7e1c
+Author: prasun <prasun@ma-pray1.ma.ic.ac.uk>
+Date:   Thu Oct 20 10:08:53 2016 +0100
+
+    Same update on two different machines
+    Merge branch 'master' of https://bitbucket.org/ImperialHPSC/m3c2016
+
+commit c1b7e1c2f9f94bff0ffdd76fcf891bbcb8826917
+Author: Prasun Ray <p.ray@imperial.ac.uk>
+Date:   Thu Oct 20 01:04:27 2016 +0100
+
+    adding lecture4 material
+
+commit 76c6f426c4084c7b6009050c24483442aa49a1fb
+Author: prasun <prasun@ma-pray1.ma.ic.ac.uk>
+Date:   Wed Oct 19 17:31:54 2016 +0100
+
+    adding lecture 4 material
+
+commit de3e179c4a9c628c30ff6d436ed18669e77e7921
+Author: prasun <prasun@ma-pray1.ma.ic.ac.uk>
+Date:   Wed Oct 19 11:35:17 2016 +0100
+
+    modified hw1.py file
+
+commit 3b90bf57f0694d8c29b3597cd2c0995a651dd43c
+Author: prasun <prasun@ma-pray1.ma.ic.ac.uk>
+Date:   Wed Oct 19 11:16:13 2016 +0100
+
+    adding homework 1
+
+commit 56d03f680ec993028cfbd000ec55ffdf7dc0d3fd
+Author: Prasun Ray <p.ray@imperial.ac.uk>
+Date:   Mon Oct 17 00:13:01 2016 +0100
+
+    adding lecture 3 slides
+
+commit 7aed3a184635ecf93e54b6a33cb4fafb803edafb
+Author: Prasun Ray <p.ray@imperial.ac.uk>
+Date:   Sun Oct 16 12:37:01 2016 +0100
+
+    adding labs directory
+
+commit 3be68cb63fab4a68fa8ad116bfdb28c8047398c3
+Author: Prasun Ray <p.ray@imperial.ac.uk>
+Date:   Thu Oct 13 00:10:39 2016 +0100
+
+    adding lecture 2 slides
+
+commit 4e93353e688087fcaac0c6d34ff4624be3d01f85
+Author: Prasun Ray <p.ray@imperial.ac.uk>
+Date:   Mon Oct 10 23:00:34 2016 +0100
+
+    adding Unix notes
+
+commit 585e9e0f4a2549b76f20c15812900683c21e9d7c
+Author: Prasun Ray <p.ray@imperial.ac.uk>
+Date:   Thu Oct 6 01:09:33 2016 +0100
+
+    adding lecture 1 slides
+
+commit 3b19ea89b21ec58c145062ae543ff018fd54b109
+Author: prasun <prasun@ma-pray1.ma.ic.ac.uk>
+Date:   Wed Oct 5 14:58:38 2016 +0100
+
+    initial commit
