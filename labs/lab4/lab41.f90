@@ -8,8 +8,10 @@ program task1
 
     odd_sum = 0.d0
 !Add a do-loop which sums the first N odd integers and prints the result
-
-
+do i1=1,N,2
+ var1 = dble(i1)
+ odd_sum=odd_sum + var1
+end do
 end program task1
 
 ! To compile this code:
