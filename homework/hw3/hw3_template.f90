@@ -5,7 +5,10 @@ module network
 
 
 subroutine generate(N0,L,Nt,qmax)
+<<<<<<< HEAD
 
+=======
+>>>>>>> 12183415aaa9338c10fc8c6a264bc3c5ba57c88a
 	!Generate recursive matrix corresponding
 	!to model parameters provided as input
 	implicit none
@@ -36,7 +39,10 @@ subroutine vary_connectivity(N0,Lmax,Nt,carray)
 	implicit none
 	integer, intent(in) :: N0,Lmax,Nt
 	real(kind=8), dimension(Lmax),intent(out) :: carray
+<<<<<<< HEAD
 	if (allocated(qnet)) deallocate(qnet, anet, enet)
+=======
+>>>>>>> 12183415aaa9338c10fc8c6a264bc3c5ba57c88a
 
 
 end subroutine vary_connectivity()

@@ -1,5 +1,4 @@
-!Template code for hw4
-!Should be compiled with network.f90
+!Evgeniia Gleizer, CID: 00948999
 module netstats
 	use network
 	use omp_lib
@@ -7,13 +6,6 @@ module netstats
 contains
 
 subroutine stats(n0,l,nt,m,qnetm,qmaxm,qvarm)
-	!Input: 
-	!n0,nl,nt: recursive network model parameters
-	!m: number of network realizations to compute
-	!Output:
-	!qnetm: node lists for all m networks
-	!qvarm: ensemble averages of var(q)
-	!qmaxm: maximum qmax from m network realizations
 	implicit none
 	integer, intent(in) :: n0,l,nt, m
 	integer, dimension(n0+nt,m), intent(out) :: qnetm
@@ -23,40 +15,33 @@ subroutine stats(n0,l,nt,m,qnetm,qmaxm,qvarm)
 	integer :: i1,i2, qmax
 	integer, dimension(n0+nt) :: qnet
 	integer, dimension(n0+l*nt,2) :: enet 
-	
+	!Assign tqnet and qmax to 0
 	qnetm(:,:)=0
 	qmaxm=0
+	!Loop to run all further procedures m times
 	do i1=1,m
+           !Calling our generate function
 	   call generate(n0,l,nt,qmax,qnet,enet)
+	   !Putting qnet values in qnetm
 	   qnetm(:,i1)=qnet
-	   
-	   if (qmax>qmaxm) then
-	        qmaxm=qmax
-	   end if
-	   
+	   !Choosing max out of all qmax for different m
+	   qmaxm=max(qmax,qmaxm)
 	   var=0
+	   !Calculating mean 
 	   x = sum(qnet)/size(qnet)
+	   !Loop to calculate variance 
 	   do i2=1,size(qnet)
                 var=var + (qnet(i2)-x)**2
            end do
 	   qvarm=qvarm + var/size(qnet)
 
 	end do
+	!Diving by m to get the mean
 	qvarm=qvarm/m
-        
-        print *, qvarm
     
 end subroutine stats
 
-
 subroutine stats_omp(n0,l,nt,m,numThreads,qnetm,qmaxm,qvarm)
-	!Input: 
-	!n0,nl,nt: recursive network model parameters
-	!m: number of network realizations to compute
-	!numThreads: number of threads for parallel computation
-	!Output:
-	!qnetm: node lists for all m networks
-	!qmaxm,qvarm: ensemble averages of max(q) and var(q)
 	implicit none
 	integer, intent(in) :: n0,l,nt,m,numThreads
 	integer, dimension(n0+nt,m), intent(out) :: qnetm
@@ -69,50 +54,59 @@ subroutine stats_omp(n0,l,nt,m,numThreads,qnetm,qmaxm,qvarm)
 	
 	qnetm(:,:)=0
 	qmaxm=0
-	!$OMP parallel do
+	!Parallelisation with OMP
+	!$OMP parallel do private(qmax,qnet,enet,qmaxm,var,x)
 	do i1=1,m
 	   call generate(n0,l,nt,qmax,qnet,enet)
 	   qnetm(:,i1)=qnet
-	   
-	   if (qmax>qmaxm) then
-	        qmaxm=qmax
-	   end if
+	   qmaxm=max(qmax,qmaxm)
 	   x = sum(qnet)/size(qnet)
 	   
-	   var=0.d0
-	   partial_var=0.d0
-           !$OMP parallel firstprivate(var),private(threadID)
-           !$OMP do
 	   do i2=1,size(qnet)
-                partial_var=partial_var + (qnet(i2)-x)**2
+                var=var + (qnet(i2)-x)**2
            end do
-           !$OMP end do
-           !$OMP critical
-           threadID = omp_get_thread_num()
-           print *, 'Thread number:',threadID, 'var=', var
-           var = var + partial_var
-           !$OMP end critical   
-           
 	   qvarm=qvarm + var/size(qnet)
 
 	end do
+	!End of parallelisation
 	!$OMP end parallel do
 	qvarm=qvarm/m
-        
-        print *, qvarm
-
 
 end subroutine stats_omp
 
-
 subroutine test_stats_omp(n0,l,nt,m,numThreads,walltime)
-	!Input: same as stats_omp
-	!Output: walltime: time for 100 cals to stats_par
 	implicit none
 	integer, intent(in) :: n0,l,nt,m,numThreads
 	real(kind=8), intent(out) :: walltime
-
-
+        integer, dimension(n0+nt,m) :: qnetm
+	integer(kind=8)  :: clock_t1, clock_t2, clock_rate
+	integer :: qmaxm, i
+	real(kind=8) :: qvarm
+	!Assigning the time variables to 0
+	walltime=0.d0
+	clock_t1=0.d0
+	clock_t2=0.d0
+	!If loop to distinguish different amount of numThreads
+	if (numThreads==1) then 
+	   !Loop to calcullate array of times of stats for all m
+	   do i=1,100
+	     call system_clock(clock_t1)
+	     call stats(n0,l,nt,m,qnetm,qmaxm,qvarm)
+	     call system_clock(clock_t2,clock_rate)
+	     walltime=walltime+dble(clock_t2-clock_t1)/dble(clock_rate)
+	   end do
+	else 
+	   !Loop to calcullate array of times of statsomp for all m
+	   do i=1,100
+	     call system_clock(clock_t1)
+	     call stats_omp(n0,l,nt,m,numThreads,qnetm,qmaxm,qvarm)
+	     call system_clock(clock_t2,clock_rate)
+	     walltime=walltime+dble(clock_t2-clock_t1)/dble(clock_rate)
+	   end do
+	end if
+	!Calculating the average of walltime
+	walltime=walltime/100
+        print *, walltime
 end subroutine test_stats_omp
 
 
