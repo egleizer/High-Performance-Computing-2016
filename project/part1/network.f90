@@ -3,7 +3,6 @@ module network
 
 	contains
 
-
 subroutine generate(N0,L,Nt,qmax,qnet,enet)
 	!Generate recursive network corresponding
 	!to model parameters provided as input
@@ -71,13 +70,59 @@ subroutine adjacency_list(qnet,enet,alist1,alist2)
 	!Create adjacency lists corresponding
 	!to degree and edge lists provided as input
 	implicit none
+	integer :: k, l,t, i1, i2, i3, i4, i, j,p
 	integer, dimension(:) :: qnet
 	integer, dimension(:,:), intent(in) :: enet
 	integer, dimension(size(enet,1)*2), intent(out) :: alist1
 	integer, dimension(size(qnet)), intent(out) :: alist2
-
-        	
+	alist1(:)=0
+	k=size(enet,1)
+	l=size(qnet)
+	t=1
 	
+      !  do p=1,k
+	!   if (enet(p,1)==1) then
+	!     alist1(t)=enet(p,2)
+	!     t=t+1
+	!   end if
+!	end do 
+	
+
+	do j=1,l
+	  i1=t
+	    do i=1,k
+	        if (enet(i,2)==j) then
+	            alist1(t)=enet(i,1)
+	            t=t+1
+	        end if
+	    end do
+	   ! print *, alist1
+	    !print *, 'hey'
+	    do p=1,k
+	        if (enet(p,1)==j) then
+	            alist1(t)=enet(p,2)
+	            t=t+1
+	        end if
+	    end do 
+	   ! print *, alist1
+	    !print *, 'hey2'
+	end do
+	
+	alist2(1)=1
+	!print *, qnet
+	do i3=2,l
+	    alist2(i3)=alist2(i3-1)+qnet(i3-1)
+	end do 
+        !print *, size(alist1), t
+        !print *, alist2
+        !print *, size(alist2)
+        !print *, l
+!	print *, enet
+!	print *, 'hey'
+!	print *, qnet
+!	print *, 'hey2'
+!	print *, alist1
+!	print *, 'hey3'
 end subroutine adjacency_list
 
 
